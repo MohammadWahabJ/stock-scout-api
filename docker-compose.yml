@@ -1,0 +1,36 @@
+services:
+  # FastAPI application service
+  api:
+    build: .
+    container_name: stock-scout-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      - SQLALCHEMY_DATABASE_URL=postgresql+psycopg2://user:password@db:5432/db_name
+    networks:
+      - stock-scout-network
+
+  db:
+    image: postgres:16
+    container_name: stock-scout-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    networks:
+      - stock-scout-network
+
+volumes:
+  postgres_data:
+
+networks:
+  stock-scout-network:
+    driver: bridge

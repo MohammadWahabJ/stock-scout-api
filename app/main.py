@@ -29,7 +29,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,  # List of allowed origins
     allow_credentials=True,
-    allow_methods=["GET"],  # Allow all methods (GET, POST, etc.)
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers
 )
 
@@ -69,6 +69,6 @@ async def add_jwt_validation(request: Request, call_next):
 # Root endpoint (for testing)
 
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def read_root():
     return {"message": "Welcome to the FastAPI Stock Dashboard!"}

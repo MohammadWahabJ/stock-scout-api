@@ -16,13 +16,13 @@ def get_db():
         db.close()
 
 
-@router.get("/stocks", response_model=list[Stock])
+@router.get("", response_model=list[Stock])
 def get_stocks(db: Session = Depends(get_db)):
     stocks = db.query(models.Stock).all()
     return stocks
 
 
-@router.post("/stocks", response_model=Stock)
+@router.post("", response_model=Stock)
 def add_stock(stock_data: Stock, db: Session = Depends(get_db)):
     db_stock = db.query(models.Stock).filter(
         models.Stock.symbol == stock_data.symbol).first()

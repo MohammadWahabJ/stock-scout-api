@@ -3,8 +3,6 @@ from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from typing import Any
 from .config import settings
-# from pydantic import BaseModel
-# from pydantic.alias_generator import to_camel
 
 # Password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

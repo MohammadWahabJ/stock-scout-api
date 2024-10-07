@@ -18,8 +18,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Copy the FastAPI application code into the container
 COPY . /app/
 
-# Expose port 8000 (FastAPI default port)
-EXPOSE 8000
+EXPOSE 80
 
 # Run the application using Uvicorn
 COPY entrypoint.sh /app/entrypoint.sh

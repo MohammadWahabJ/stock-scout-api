@@ -4,7 +4,7 @@ services:
     build: .
     container_name: stock-scout-api
     ports:
-      - "8000:8000"
+      - "8000:80"
     volumes:
       - .:/app
     depends_on:

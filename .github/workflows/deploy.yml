@@ -53,7 +53,7 @@ jobs:
 
           # Get the current task definition JSON
           CURRENT_TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition $TASK_DEFINITION_NAME)
-          CURRENT_TASK_DEFINITION_JSON=$(echo $CURRENT_TASK_DEFINITION | jq '.taskDefinition')
+          CURRENT_TASK_DEFINITION_JSON=$(echo $CURRENT_TASK_DEFINITION | jq '.taskDefinition | del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy)')
 
           # Create a new task definition with the updated image URI
           NEW_TASK_DEF=$(echo $CURRENT_TASK_DEFINITION_JSON | jq --arg IMAGE_URI "$IMAGE_URI" '.containerDefinitions[0].image = $IMAGE_URI')

@@ -19,11 +19,7 @@ app = FastAPI(
 models.Base.metadata.create_all(bind=engine)
 
 # Set up CORS (allow requests from frontend)
-origins = [
-    "http://localhost:3000",  # if your frontend is running on port 3000
-    "http://localhost:8000",
-    "http://localhost",
-]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
